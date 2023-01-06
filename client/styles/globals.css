@@ -79,6 +79,7 @@ h1 a {
 .search-form button {
   color: #ff7851;
   border-color: #ff7851;
+  box-shadow: none !important;
 }
 
 .search-form button:hover {
@@ -91,11 +92,6 @@ h1 a {
   color: whitesmoke !important;
   border-color: whitesmoke !important;
   background-color: #b73c1a !important;
-  box-shadow: none !important;
-}
-
-.search-form input {
-  box-shadow: none !important;
 }
 
 .search-form input:focus {

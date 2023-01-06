@@ -3,11 +3,12 @@ import { useProductContext } from "../../context/ProductContext";
 
 export const Search = () => {
   const { getProductByName } = useProductContext();
-  const [productSearch, setProductSearch] = useState(null);
+  const [productSearch, setProductSearch] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    getProductByName(productSearch);
+    await getProductByName(productSearch);
+    setProductSearch("");
   };
 
   return (
@@ -24,6 +25,7 @@ export const Search = () => {
             className="form-control mr-sm-2"
             type="search"
             placeholder="Search"
+            value={productSearch}
             maxLength={140}
             minLength={1}
             onChange={(e) => setProductSearch(e.target.value)}

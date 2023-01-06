@@ -122,3 +122,28 @@ module.exports.getProductById = async (req, res) => {
     });
   }
 };
+
+module.exports.getProductByName = async (req, res) => {
+  const { name } = req.params;
+  try {
+    const products = await Product.sequelize.query(
+      `SELECT _id, name, price
+      FROM products
+      WHERE name LIKE "%${name}%"`,
+      {
+        type: QueryTypes.SELECT,
+      }
+    );
+    return res.status(200).json({
+      status: "success",
+      message: `${name} name search results`,
+      products,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(404).json({
+      status: "error",
+      message: `Could not get the results for the name search ${name}`,
+    });
+  }
+};

@@ -28,6 +28,27 @@ export const ProductContext = ({ children }) => {
     return product;
   };
 
+  const getProductByName = async (name) => {
+    await axios
+      .get(
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/get-product-name/${name}`
+      )
+      .then(async (res) => {
+        const products = res.data.products;
+        if (products.length > 0) {
+          setProducts(res.data.products);
+        } else {
+          toast.error(`No found results for the search "${name}"`, {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }
+      })
+      .catch((e) => {});
+  };
+
   const postProduct = async (form) => {
     let confirmation = false;
     await axios
@@ -97,6 +118,7 @@ export const ProductContext = ({ children }) => {
         postProduct,
         patchProduct,
         deleteProduct,
+        getProductByName,
       }}
     >
       {children}

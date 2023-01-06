@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Product } from "../components/home/Product";
+import { Search } from "../components/home/Search";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
         <title>Produx - Home</title>
       </Head>
       <main>
+        <Search />
         <Product />
       </main>
     </>

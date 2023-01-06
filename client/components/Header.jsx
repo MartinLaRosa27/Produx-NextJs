@@ -15,7 +15,7 @@ export const Header = () => {
       </div>
       <Link
         href="/product/newProduct"
-        className="btn-danger nuevo-post d-block d-md-inline-block"
+        className="btn-danger new-post d-block d-md-inline-block"
       >
         <span className="add-text">New product</span>
         <span className="add-logo">

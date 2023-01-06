@@ -10,7 +10,7 @@ export const ProductInfo = ({ product }) => {
       <td>{product.name}</td>
       <td className="font-weight-bold">{product.price}</td>
 
-      <td className="acciones">
+      <td className="actions">
         <Link
           href={`/product/edit/${product._id}`}
           className="btn btn-primary mr-2"

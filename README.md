@@ -8,3 +8,8 @@ Also, the user can remove, edit and search de registered products on the page.
 ### Technologies Used
 
 ### Screenshots
+
+### Changes
+email in the navbar
+user register validation
+user logir register fe

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { FormEditProduct } from "../../../components/productEdit/FormEditProduct";
 import { useProductContext } from "../../../context/ProductContext";
+import { auth } from "../../../middleware/auth";
 
 export default function EditProduct({ _id }) {
   const [product, setProudct] = useState(null);
@@ -42,10 +43,26 @@ export default function EditProduct({ _id }) {
   );
 }
 
-export const getServerSideProps = ({ params }) => {
+export const getServerSideProps = async (context) => {
+  let token;
+  if (typeof context.req.headers.cookie !== "string") {
+    token = "Invalid token";
+  } else {
+    const parsedCookies = cookie.parse(context.req.headers.cookie);
+    token = parsedCookies.token;
+  }
+  if (!(await auth(token))) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {
-      _id: params.id,
+      _id: context.params.id,
+      token,
     },
   };
 };

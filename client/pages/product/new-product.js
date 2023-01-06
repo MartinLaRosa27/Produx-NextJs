@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { FormAddProduct } from "../../components/product/FormAddProduct";
+import { auth } from "../../middleware/auth";
 
 export default function Product() {
   return (
@@ -20,3 +21,26 @@ export default function Product() {
     </>
   );
 }
+
+export const getServerSideProps = async (context) => {
+  let token;
+  if (typeof context.req.headers.cookie !== "string") {
+    token = "Invalid token";
+  } else {
+    const parsedCookies = cookie.parse(context.req.headers.cookie);
+    token = parsedCookies.token;
+  }
+  if (!(await auth(token))) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      token,
+    },
+  };
+};

@@ -1,15 +1,14 @@
 import Head from "next/head";
-import { Product } from "../components/home/Product";
-import {auth} from "../middleware/auth"
+import { auth } from "../middleware/auth";
 
-export default function Home() {
+export default function Login() {
   return (
     <>
       <Head>
-        <title>Produx - Home</title>
+        <title>Welcome to Produx</title>
       </Head>
       <main>
-        <Product />
+        <h1>Login</h1>
       </main>
     </>
   );
@@ -23,10 +22,10 @@ export const getServerSideProps = async (context) => {
     const parsedCookies = cookie.parse(context.req.headers.cookie);
     token = parsedCookies.token;
   }
-  if (!await auth(token)) {
+  if (await auth(token)) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/",
         permanent: false,
       },
     };

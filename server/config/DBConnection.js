@@ -1,3 +1,5 @@
+require("../models/User");
+require("../models/Product");
 const { DBConfiguration } = require("./DBConfiguration");
 
 module.exports.DBConnection = () => {

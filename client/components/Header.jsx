@@ -14,7 +14,7 @@ export const Header = () => {
         </Link>
       </div>
       <Link
-        href="/product/newProduct"
+        href="/product/new-product"
         className="btn-danger new-post d-block d-md-inline-block"
       >
         <span className="add-text">New product</span>

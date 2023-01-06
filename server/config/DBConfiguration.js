@@ -1,4 +1,3 @@
-require("../models/Product");
 const Sequelize = require("sequelize");
 require("dotenv").config({ path: ".env" });
 

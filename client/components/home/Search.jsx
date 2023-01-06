@@ -13,10 +13,10 @@ export const Search = () => {
 
   return (
     <div>
-      <h2 className="text-center my-5">
+      <h4 className="text-center mt-5">
         Search for a specific registered product
-      </h2>
-      <div className="search-form">
+      </h4>
+      <div className="search-form mt-3 mb-5">
         <form
           className="form-inline my-2 my-lg-0"
           onSubmit={(e) => handleSubmit(e)}

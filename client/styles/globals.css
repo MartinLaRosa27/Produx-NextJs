@@ -98,6 +98,30 @@ h1 a {
   border-color: #ff7851;
 }
 
+.header-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-actions h4 {
+  margin-right: 20px;
+}
+
+.header-actions h4:hover {
+  color: #ff7851;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
 @media (max-width: 1375px) {
   .new-post.add-text {
     display: none;

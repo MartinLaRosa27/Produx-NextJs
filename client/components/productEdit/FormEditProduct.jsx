@@ -2,11 +2,11 @@ import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useProductContext } from "../../context/ProductContext";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
-export const FormEditProduct = ({ product }) => {
+export const FormEditProduct = ({ product, token }) => {
   const { patchProduct } = useProductContext();
-  const router = useRouter()
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -23,8 +23,8 @@ export const FormEditProduct = ({ product }) => {
         .min(0, "The price value cannot be less than 0"),
     }),
     onSubmit: async (FormData) => {
-      if (await patchProduct(FormData, product._id)) {
-        router.push("/")
+      if (await patchProduct(FormData, product._id, token)) {
+        router.push("/");
       }
     },
   });

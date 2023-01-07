@@ -1,15 +1,21 @@
+import React, { useEffect } from "react";
 import Head from "next/head";
+import * as cookie from "cookie";
 import { Product } from "../components/home/Product";
-import {auth} from "../middleware/auth"
+import { auth } from "../middleware/auth";
 
-export default function Home() {
+export default function Home({ token, setUserToken }) {
+  useEffect(() => {
+    setUserToken(token);
+  }, []);
+
   return (
     <>
       <Head>
         <title>Produx - Home</title>
       </Head>
       <main>
-        <Product />
+        <Product token={token} />
       </main>
     </>
   );
@@ -23,7 +29,7 @@ export const getServerSideProps = async (context) => {
     const parsedCookies = cookie.parse(context.req.headers.cookie);
     token = parsedCookies.token;
   }
-  if (!await auth(token)) {
+  if (!(await auth(token))) {
     return {
       redirect: {
         destination: "/login",

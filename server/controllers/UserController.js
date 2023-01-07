@@ -11,6 +11,18 @@ module.exports.createUser = async (req, res) => {
       message: "Passwords not match",
     });
   }
+  if (email.length < 5 || email.length > 140) {
+    return res.status(400).json({
+      status: "error",
+      message: "The email only can have between 5 and 150 characters.",
+    });
+  }
+  if (password.length < 8 || password.length > 25) {
+    return res.status(400).json({
+      status: "error",
+      message: "The password only can have between 8 and 25 characters.",
+    });
+  }
   const userExists = await User.findOne({
     where: {
       email,

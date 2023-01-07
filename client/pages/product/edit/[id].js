@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import * as cookie from "cookie";
 import { FormEditProduct } from "../../../components/productEdit/FormEditProduct";
 import { useProductContext } from "../../../context/ProductContext";
 import { auth } from "../../../middleware/auth";
 
-export default function EditProduct({ _id }) {
+export default function EditProduct({ _id, token }) {
   const [product, setProudct] = useState(null);
 
   const { getProductById } = useProductContext();
 
   useEffect(() => {
     const callGetProductById = async () => {
-      setProudct(await getProductById(_id));
+      setProudct(await getProductById(_id, token));
     };
     callGetProductById();
   }, []);
@@ -31,7 +32,7 @@ export default function EditProduct({ _id }) {
               <h3 className="text-center">Product Information not found</h3>
             )}
             {product !== null && product.length > 0 && (
-              <FormEditProduct product={product[0]} />
+              <FormEditProduct product={product[0]} token={token} />
             )}
             {product === null && (
               <h3 className="text-center">Loading Product Information...</h3>
@@ -61,8 +62,8 @@ export const getServerSideProps = async (context) => {
   }
   return {
     props: {
-      _id: context.params.id,
       token,
+      _id: context.params.id,
     },
   };
 };

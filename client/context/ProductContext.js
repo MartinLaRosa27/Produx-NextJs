@@ -6,19 +6,26 @@ const Context = createContext();
 export const ProductContext = ({ children }) => {
   const [products, setProducts] = useState(null);
 
-  const getAllProducts = async () => {
+  const getAllProducts = async (token) => {
     await axios
-      .get(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/get-all-products`)
+      .put(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/get-all-products`, {
+        header: token,
+      })
       .then(async (res) => {
         setProducts(res.data.products);
       })
       .catch((e) => {});
   };
 
-  const getProductById = async (id) => {
+  const getProductById = async (id, token) => {
     let product = null;
     await axios
-      .get(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/get-product-id/${id}`)
+      .put(
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/get-product-id/${id}`,
+        {
+          header: token,
+        }
+      )
       .then(async (res) => {
         product = res.data.product;
       })
@@ -28,10 +35,13 @@ export const ProductContext = ({ children }) => {
     return product;
   };
 
-  const getProductByName = async (name) => {
+  const getProductByName = async (name, token) => {
     await axios
-      .get(
-        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/get-product-name/${name}`
+      .put(
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/get-product-name/${name}`,
+        {
+          header: token,
+        }
       )
       .then(async (res) => {
         const products = res.data.products;
@@ -49,10 +59,14 @@ export const ProductContext = ({ children }) => {
       .catch((e) => {});
   };
 
-  const postProduct = async (form) => {
+  const postProduct = async (form, token) => {
     let confirmation = false;
     await axios
-      .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/post-product`, form)
+      .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/post-product`, {
+        header: token,
+        name: form.name,
+        price: form.price,
+      })
       .then(async (res) => {
         toast.success(res.data.message, {
           style: {
@@ -68,12 +82,16 @@ export const ProductContext = ({ children }) => {
     return confirmation;
   };
 
-  const patchProduct = async (form, id) => {
+  const patchProduct = async (form, id, token) => {
     let confirmation = false;
     await axios
       .patch(
         `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/patch-product/${id}`,
-        form
+        {
+          header: token,
+          name: form.name,
+          price: form.price,
+        }
       )
       .then(async (res) => {
         toast.success(res.data.message, {
@@ -90,10 +108,15 @@ export const ProductContext = ({ children }) => {
     return confirmation;
   };
 
-  const deleteProduct = async (id) => {
+  const deleteProduct = async (id, token) => {
     await axios
       .delete(
-        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/delete-product/${id}`
+        `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/delete-product/${id}`,
+        {
+          data: {
+            header: token,
+          },
+        }
       )
       .then(async (res) => {
         toast.success(res.data.message, {
@@ -102,7 +125,7 @@ export const ProductContext = ({ children }) => {
             color: "#fff",
           },
         });
-        getAllProducts();
+        getAllProducts(token);
       })
       .catch((e) => {
         toast.error(e.response.data.message);

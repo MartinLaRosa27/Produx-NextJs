@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useProductContext } from "../../context/ProductContext";
 
-export const Search = () => {
+export const Search = ({ token }) => {
   const { getProductByName } = useProductContext();
   const [productSearch, setProductSearch] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await getProductByName(productSearch);
+    await getProductByName(productSearch, token);
     setProductSearch("");
   };
 

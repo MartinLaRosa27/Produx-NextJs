@@ -6,10 +6,11 @@ Only the register user are able to enter in the page. The user can create a acco
 Also, the user can remove, edit and search de registered products on the page.
 
 ### Technologies Used
+HTML / CSS / JavaScript / React.js / Next.js / Node.js / MySQL / Cookies / Consume API REST
 
 ### Screenshots
-
-### Changes
-email in the navbar
-user register validation
-user logir register fe
+![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot01.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot02.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot03.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot04.png?raw=true)
+![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot05.png?raw=true)

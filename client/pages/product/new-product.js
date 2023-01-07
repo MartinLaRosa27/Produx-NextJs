@@ -1,8 +1,9 @@
 import Head from "next/head";
+import * as cookie from "cookie";
 import { FormAddProduct } from "../../components/product/FormAddProduct";
 import { auth } from "../../middleware/auth";
 
-export default function Product() {
+export default function Product({ token }) {
   return (
     <>
       <Head>
@@ -14,7 +15,7 @@ export default function Product() {
             <h2 className="text-center mb-4 font-weight-bold mt-4">
               Add New Product
             </h2>
-            <FormAddProduct />
+            <FormAddProduct token={token} />
           </div>
         </div>
       </div>

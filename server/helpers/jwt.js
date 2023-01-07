@@ -15,9 +15,25 @@ module.exports.createToken = (user) => {
 
 module.exports.decodeToken = (token) => {
   const tokenAux = token.replace(/['"]+/g, "");
-  const payload = jwt.decode(tokenAux, process.env.SECRET);
+  const payload = jwt.decode(tokenAux, process.env.SECRET); // If token is not valid, throw error
   if (payload.exp <= moment().unix()) {
     throw new Error("Expired Token");
   }
   return payload;
+};
+
+module.exports.tokenValidation = (req, res) => {
+  const { token } = req.body;
+  try {
+    this.decodeToken(token);
+    return res.status(200).json({
+      status: "success",
+      message: "Valid token",
+    });
+  } catch (e) {
+    return res.status(404).json({
+      status: "error",
+      message: "Invalid token",
+    });
+  }
 };

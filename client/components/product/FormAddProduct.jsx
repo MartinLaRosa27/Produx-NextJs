@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useProductContext } from "../../context/ProductContext";
 
-export const FormAddProduct = () => {
+export const FormAddProduct = ({ token }) => {
   const { postProduct } = useProductContext();
 
   const formik = useFormik({
@@ -21,7 +21,7 @@ export const FormAddProduct = () => {
         .min(0, "The price value cannot be less than 0"),
     }),
     onSubmit: async (FormData) => {
-      if (await postProduct(FormData)) {
+      if (await postProduct(FormData, token)) {
         formik.handleReset();
       }
     },

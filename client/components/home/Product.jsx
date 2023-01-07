@@ -3,11 +3,11 @@ import { ProductInfo } from "./ProductInfo";
 import { useProductContext } from "../../context/ProductContext";
 import { Search } from "./Search";
 
-export const Product = () => {
+export const Product = ({ token }) => {
   const { getAllProducts, products } = useProductContext();
 
   useEffect(() => {
-    getAllProducts();
+    getAllProducts(token);
   }, []);
 
   return (
@@ -19,7 +19,7 @@ export const Product = () => {
       )}
       {products !== null && products.length > 0 && (
         <>
-          <Search />
+          <Search token={token} />
           <table className="table table-striped container">
             <thead className="bg-primary table-dark">
               <tr>
@@ -30,7 +30,13 @@ export const Product = () => {
             </thead>
             <tbody>
               {products.map((product) => {
-                return <ProductInfo product={product} key={product._id} />;
+                return (
+                  <ProductInfo
+                    product={product}
+                    key={product._id}
+                    token={token}
+                  />
+                );
               })}
             </tbody>
           </table>

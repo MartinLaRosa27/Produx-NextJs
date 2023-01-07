@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useProductContext } from "../../context/ProductContext";
 
-export const ProductInfo = ({ product }) => {
+export const ProductInfo = ({ product, token }) => {
   const { deleteProduct } = useProductContext();
 
   return (
@@ -20,7 +20,7 @@ export const ProductInfo = ({ product }) => {
         <button
           type="button"
           className="btn btn-danger"
-          onClick={() => deleteProduct(product._id)}
+          onClick={() => deleteProduct(product._id, token)}
         >
           DELETE
         </button>

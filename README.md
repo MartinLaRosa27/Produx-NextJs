@@ -11,4 +11,3 @@ HTML / CSS / JavaScript / React.js / Next.js / Node.js / MySQL / Cookies / Consu
 ![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot02.png?raw=true)
 ![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot03.png?raw=true)
 ![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot04.png?raw=true)
-![alt text](https://github.com/MartinLaRosa27/Produx-NextJs/blob/main/resources/screenshot05.png?raw=true)
